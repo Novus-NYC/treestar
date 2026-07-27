@@ -1,10 +1,6 @@
+import Image from "next/image"
 import type { Product } from "@/lib/products"
-
-const palette = {
-  soaps: "from-[#d9a441] via-[#7bae7f] to-[#1c3320]",
-  candles: "from-[#f5d48a] via-[#b8923a] to-[#2d5a34]",
-  goodies: "from-[#faf7f0] via-[#dde8d8] to-[#4a7c52]",
-}
+import { getProductImage } from "@/lib/image-assets"
 
 export default function ProductVisual({
   product,
@@ -13,11 +9,21 @@ export default function ProductVisual({
   product: Pick<Product, "name" | "category">
   className?: string
 }) {
+  const image = getProductImage(product)
+
   return (
-    <div className={`relative overflow-hidden bg-gradient-to-br ${palette[product.category]} ${className}`}>
-      <div className="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_24%_24%,#faf7f0_0_9%,transparent_10%),radial-gradient(circle_at_76%_68%,#faf7f0_0_7%,transparent_8%),repeating-linear-gradient(135deg,rgba(250,247,240,.32)_0_2px,transparent_2px_18px)]" />
-      <div className="absolute inset-6 rounded-full border border-[rgba(250,247,240,0.38)]" />
-      <div className="absolute inset-x-6 bottom-6 rounded-lg bg-[rgba(28,51,32,0.72)] p-4 text-[var(--color-cream)] backdrop-blur">
+    <div className={`product-visual group/product relative overflow-hidden bg-[var(--color-deep)] ${className}`}>
+      <Image
+        src={image}
+        alt={product.name}
+        fill
+        sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
+        className="object-cover transition duration-700 ease-out group-hover/product:scale-105"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(28,51,32,0.04),rgba(28,51,32,0.72))]" />
+      <div className="absolute inset-4 border border-[rgba(250,247,240,0.36)] opacity-70 [clip-path:polygon(0_0,78%_0,100%_22%,100%_100%,22%_100%,0_78%)]" />
+      <div className="absolute right-5 top-5 h-20 w-20 rounded-full border border-[rgba(250,247,240,0.35)] opacity-70" />
+      <div className="absolute inset-x-5 bottom-5 bg-[rgba(28,51,32,0.74)] p-4 text-[var(--color-cream)] backdrop-blur-md">
         <p className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[var(--color-fern)]">
           TREE*STAR
         </p>

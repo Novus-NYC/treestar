@@ -3,6 +3,7 @@ import Link from "next/link"
 import NewsletterForm from "@/lib/components/newsletter-form"
 import ProductPrice from "@/lib/components/product-price"
 import ProductVisual from "@/lib/components/product-visual"
+import { siteImages } from "@/lib/image-assets"
 import { products } from "@/lib/products"
 
 const testimonials = [
@@ -80,19 +81,21 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-[rgba(250,247,240,0.24)] bg-[rgba(250,247,240,0.08)] p-5 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_22%,rgba(184,146,58,0.30),transparent_28%),radial-gradient(circle_at_72%_60%,rgba(123,174,127,0.34),transparent_34%)]" />
-            <div className="relative grid h-full min-h-[380px] grid-cols-3 gap-3">
-              {["Fresh", "Natural", "Soap"].map((word, index) => (
-                <div
-                  key={word}
-                  className={`flex items-center justify-center rounded-2xl border border-[rgba(250,247,240,0.22)] bg-[rgba(28,51,32,0.58)] px-3 text-center font-serif text-4xl italic text-[var(--color-cream)] shadow-inner ${
-                    index === 1 ? "translate-y-8" : index === 2 ? "translate-y-16" : ""
-                  }`}
-                >
-                  {word}
-                </div>
-              ))}
+          <div className="hero-image-stack relative min-h-[420px] overflow-hidden rounded-[1.35rem] border border-[rgba(250,247,240,0.24)] shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
+            <Image
+              src={siteImages.heroRitual}
+              alt="Natural handmade soap bars styled with botanicals"
+              fill
+              priority
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(28,51,32,0.05),rgba(28,51,32,0.58))]" />
+            <div className="absolute bottom-6 left-6 max-w-xs border border-[rgba(250,247,240,0.28)] bg-[rgba(28,51,32,0.68)] p-5 backdrop-blur-md">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--color-fern)]">Fresh Natural Soap</p>
+              <p className="mt-3 font-serif text-4xl italic leading-none text-[var(--color-cream)]">
+                Botanical lather for city skin.
+              </p>
             </div>
           </div>
         </div>
@@ -110,8 +113,16 @@ export default function HomePage() {
 
       <section id="about" className="px-5 py-20 sm:px-8 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="image-slot fern-slot min-h-[440px] overflow-hidden rounded-2xl p-8 text-left">
-            <div>
+          <div className="fern-slot relative min-h-[440px] overflow-hidden rounded-2xl p-8 text-left">
+            <Image
+              src={siteImages.soapMaking}
+              alt="Handmade soap ingredients and botanical bath materials"
+              fill
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,39,25,0.72),rgba(74,124,82,0.28))]" />
+            <div className="relative">
               <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-fern)]">
                 treestar jungle
               </div>
@@ -206,9 +217,6 @@ export default function HomePage() {
                 <p>Email: jose@treestarnyc.com</p>
                 <p>Jackson Heights, NY</p>
               </div>
-              <p className="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-moss)]">
-                Image by Marc Zimmer
-              </p>
             </article>
             <article className="surface rounded-2xl bg-[var(--color-cream)] p-8">
               <div className="eyebrow">Visit Us</div>

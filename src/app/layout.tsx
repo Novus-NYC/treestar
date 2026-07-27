@@ -1,6 +1,7 @@
 import "./globals.css"
 import Navbar from "@/lib/components/navbar"
 import Footer from "@/lib/components/footer"
+import ScrollReveal from "@/lib/components/scroll-reveal"
 
 export const metadata = {
   title: "TREE*STAR NYC | Handmade Natural Soap",
@@ -19,6 +20,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ScrollReveal />
       </body>
     </html>
   )

@@ -1,4 +1,8 @@
+import Image from "next/image"
 import Link from "next/link"
+import ProductVisual from "@/lib/components/product-visual"
+import { siteImages } from "@/lib/image-assets"
+import { products as catalogProducts, type ProductCategory } from "@/lib/products"
 
 const candles = [
   { name: "Tomato Leaf + Mint Soy Candle", price: "$25.00", badge: "new*" },
@@ -29,17 +33,21 @@ function ProductCard({
     badge?: string
   }
 }) {
+  const match = catalogProducts.find((item) => item.name.toLowerCase() === product.name.toLowerCase())
+  const visualProduct = {
+    name: product.name,
+    category: (match?.category ?? "candles") as ProductCategory,
+  }
+
   return (
     <article className="shop-card overflow-hidden rounded-lg border border-[rgba(74,124,82,0.26)] bg-[var(--color-cream)]">
-      <div className="relative aspect-square bg-neutral-300">
+      <div className="relative aspect-square">
+        <ProductVisual product={visualProduct} className="absolute inset-0" />
         {product.badge ? (
           <div className="absolute left-3 top-3 rounded-full bg-[var(--color-gold)] px-3 py-1 font-mono text-xs uppercase tracking-[0.08em] text-[var(--color-deep)]">
             {product.badge}
           </div>
         ) : null}
-        <div className="absolute inset-0 flex items-center justify-center font-mono text-xs uppercase tracking-[0.16em] text-neutral-500">
-          image
-        </div>
         <button className="absolute inset-x-4 bottom-4 rounded-full bg-[rgba(250,247,240,0.92)] px-4 py-3 font-mono text-xs uppercase tracking-[0.14em] text-[var(--color-deep)] shadow-sm transition hover:bg-white" type="button">
           Quick View
         </button>
@@ -78,10 +86,16 @@ export default function CandlesPage() {
               Our Sunset Candles light up the NYC skyline as your relax in their natural aromas of the outdoors.
             </p>
           </div>
-          <div className="relative min-h-[420px] overflow-hidden rounded-2xl border border-[rgba(250,247,240,0.22)] bg-neutral-300 shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
-            <div className="absolute inset-0 flex items-center justify-center font-mono text-xs uppercase tracking-[0.16em] text-neutral-500">
-              Sunset Candle image
-            </div>
+          <div className="relative min-h-[420px] overflow-hidden rounded-2xl border border-[rgba(250,247,240,0.22)] shadow-[0_24px_70px_rgba(0,0,0,0.22)]">
+            <Image
+              src={siteImages.candleShelf}
+              alt="Botanical soy candles with soft natural styling"
+              fill
+              priority
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(28,51,32,0.12),rgba(184,146,58,0.28))]" />
           </div>
         </div>
       </section>
@@ -114,9 +128,6 @@ export default function CandlesPage() {
               <p>Email: jose@treestarnyc.com</p>
               <p>Jackson Heights, NY</p>
             </div>
-            <p className="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-moss)]">
-              Image by Marc Zimmer
-            </p>
           </article>
 
           <article className="surface rounded-2xl bg-[var(--color-cream)] p-8">

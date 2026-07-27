@@ -13,6 +13,7 @@ const navLinks = [
   { label: "FAQ", href: "/faq" },
   { label: "Favors + Gifts", href: "/favors" },
   { label: "Wholesale", href: "/wholesale" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export default function Navbar() {
@@ -33,7 +34,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-[rgba(28,51,32,0.16)] bg-[rgba(250,247,240,0.95)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-[rgba(28,51,32,0.16)] bg-[rgba(250,247,240,0.92)] shadow-[0_10px_30px_rgba(28,51,32,0.08)] backdrop-blur-xl">
       <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
         <Link href="/" className="flex items-center" aria-label="TREE*STAR home" onClick={() => setOpen(false)}>
           <Image
@@ -46,7 +47,7 @@ export default function Navbar() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-[var(--color-deep)] xl:flex">
+        <nav className="hidden items-center gap-4 font-mono text-[0.66rem] uppercase tracking-[0.12em] text-[var(--color-deep)] xl:flex">
           {navLinks.map((link) => (
             <Link key={link.href} className="transition hover:text-[var(--color-moss)]" href={link.href}>
               {link.label}

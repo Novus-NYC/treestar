@@ -4,7 +4,9 @@ import { useEffect } from "react"
 
 export default function ScrollReveal() {
   useEffect(() => {
-    const cards = Array.from(document.querySelectorAll(".testimonial-card"))
+    const items = Array.from(document.querySelectorAll("main section, .surface, .shop-card"))
+
+    items.forEach((item) => item.classList.add("reveal-on-scroll"))
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -18,7 +20,7 @@ export default function ScrollReveal() {
       { threshold: 0.24 },
     )
 
-    cards.forEach((card) => observer.observe(card))
+    items.forEach((item) => observer.observe(item))
 
     return () => observer.disconnect()
   }, [])

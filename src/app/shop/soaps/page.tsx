@@ -1,4 +1,6 @@
 import Link from "next/link"
+import ProductVisual from "@/lib/components/product-visual"
+import { products as catalogProducts, type ProductCategory } from "@/lib/products"
 
 const superFattedSoaps = [
   { name: "Sake Kasu Soap", price: "$12.00", badge: "new*" },
@@ -48,17 +50,21 @@ function ProductCard({
     badge?: string
   }
 }) {
+  const match = catalogProducts.find((item) => item.name.toLowerCase() === product.name.toLowerCase())
+  const visualProduct = {
+    name: product.name,
+    category: (match?.category ?? "soaps") as ProductCategory,
+  }
+
   return (
     <article className="shop-card overflow-hidden rounded-lg border border-[rgba(74,124,82,0.26)] bg-[var(--color-cream)]">
-      <div className="relative aspect-square bg-neutral-300">
+      <div className="relative aspect-square">
+        <ProductVisual product={visualProduct} className="absolute inset-0" />
         {product.badge ? (
           <div className="absolute left-3 top-3 rounded-full bg-[var(--color-gold)] px-3 py-1 font-mono text-xs uppercase tracking-[0.08em] text-[var(--color-deep)]">
             {product.badge}
           </div>
         ) : null}
-        <div className="absolute inset-0 flex items-center justify-center font-mono text-xs uppercase tracking-[0.16em] text-neutral-500">
-          image
-        </div>
         <button className="absolute inset-x-4 bottom-4 rounded-full bg-[rgba(250,247,240,0.92)] px-4 py-3 font-mono text-xs uppercase tracking-[0.14em] text-[var(--color-deep)] shadow-sm transition hover:bg-white" type="button">
           Quick View
         </button>
@@ -134,9 +140,6 @@ export default function SoapsPage() {
               <p>Email: jose@treestarnyc.com</p>
               <p>Jackson Heights, NY</p>
             </div>
-            <p className="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-[var(--color-moss)]">
-              Image by Marc Zimmer
-            </p>
           </article>
 
           <article className="surface rounded-2xl bg-[var(--color-cream)] p-8">

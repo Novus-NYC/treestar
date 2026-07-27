@@ -1,5 +1,7 @@
+import Image from "next/image"
 import Link from "next/link"
 import PageHero from "@/lib/components/page-hero"
+import { siteImages } from "@/lib/image-assets"
 
 const values = [
   { icon: "Organic", title: "Natural Ingredients", text: "Premium, organic, food-grade plant oils in bars that feel generous on skin." },
@@ -16,8 +18,16 @@ export default function AboutPage() {
 
       <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.92fr_1fr] lg:items-center">
-          <div className="fern-slot min-h-[460px] rounded-2xl p-8 text-left">
-            <div>
+          <div className="fern-slot relative min-h-[460px] overflow-hidden rounded-2xl p-8 text-left">
+            <Image
+              src={siteImages.soapBotanicals}
+              alt="Natural handmade soaps displayed with lavender and botanicals"
+              fill
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,39,25,0.78),rgba(74,124,82,0.22))]" />
+            <div className="relative">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--color-fern)]">small team, big lather</p>
               <p className="mt-5 max-w-sm font-serif text-5xl leading-none text-[var(--color-cream)]">
                 Playful soap, serious plant-oil goodness.

@@ -89,13 +89,13 @@ export default function Footer() {
         <div className="relative flex flex-col gap-3 border-t border-[rgba(74,124,82,0.5)] pt-6 text-[var(--color-cream)]/64 sm:flex-row sm:items-center sm:justify-between lg:col-span-4">
           <span>&copy; 2026 TREE*STAR NYC · Handmade in NYC</span>
           <Link
-            href="https://voltanyc.org/"
+            href="https://www.novusnyc.org/"
             target="_blank"
             rel="noreferrer"
             className="font-mono text-xs uppercase tracking-[0.16em] transition hover:opacity-80"
-            style={{ color: "#84CC18", textDecoration: "none" }}
+            style={{ textDecoration: "none" }}
           >
-            Made by volta
+            Made by Novus
           </Link>
         </div>
       </div>
